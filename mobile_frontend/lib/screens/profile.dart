@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_frontend/helpers/habittracker.dart';
+import 'package:mobile_frontend/helpers/moodstats.dart';
 import 'package:mobile_frontend/helpers/userinfocollector.dart';
-import 'package:mobile_frontend/helpers/moodstats.dart'; // Import MoodStats page
+
 
 class Profile extends StatefulWidget {
   final String userId;
@@ -29,7 +30,7 @@ class _ProfileState extends State<Profile> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => MoodStats(userId: widget.userId),
+      builder: (context) => StatsPage(userId: widget.userId),
     );
   }
 
@@ -119,7 +120,7 @@ class _ProfileState extends State<Profile> {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Mood Stats",
+                                  " Stats",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,

@@ -33,14 +33,10 @@ class HomeScreenState extends State<Homescreen> {
       canPop: false, // Prevents default back behavior
       onPopInvokedWithResult: (didPop, result) async {
   if (!didPop) {
-    bool? exitApp = await showCustomDialog(context);
-
-    // Check if widget is still mounted before popping
-    if (exitApp == true && mounted) {
-      Navigator.of(context).pop(); // Exits the app
-    }
+    await showCustomDialog(context); // Already doing what it should
   }
 },
+
 
       child: Scaffold(
         body: IndexedStack(

@@ -73,6 +73,37 @@ Future<void> _login() async {
   }
 }
 
+Future<void> _handleGoogleSignIn() async {
+  setState(() {
+    _isLoading = true;
+    _errorMessage = null;
+  });
+
+  final user = await _authService.signInWithGoogle();
+
+  setState(() => _isLoading = false);
+
+  if (user != null) {
+    final uid = user.uid;
+    developer.log("Google login success, UID: $uid");
+
+    UidHelper.setUid(uid); // Save UID
+    await _saveUserEmail(user.email ?? ''); // Save email
+
+    if (!mounted) return;
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Homescreen(userId: uid)),
+    );
+  } else {
+    setState(() {
+      _errorMessage = "Google sign-in failed. Try again.";
+    });
+  }
+}
+
+
 
     
 
@@ -173,6 +204,19 @@ Future<void> _login() async {
                       style: TextStyle(color: Colors.blue),
                     ),
                   ),
+                  const SizedBox(height: 10),
+ElevatedButton.icon(
+  icon: const Icon(Icons.login),
+  label: const Text("Sign in with Google"),
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(255, 61, 6, 75),
+    foregroundColor: Colors.white,
+    minimumSize: const Size(double.infinity, 50),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  ),
+  onPressed: _isLoading ? null : _handleGoogleSignIn,
+),
+
                 ],
               ),
             ),
