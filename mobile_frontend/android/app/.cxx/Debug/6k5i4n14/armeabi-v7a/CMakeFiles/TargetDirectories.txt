@@ -1,0 +1,2 @@
+D:/kp files/arise/mobile_app/mobile_frontend/android/app/.cxx/Debug/6k5i4n14/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/kp files/arise/mobile_app/mobile_frontend/android/app/.cxx/Debug/6k5i4n14/armeabi-v7a/CMakeFiles/rebuild_cache.dir
